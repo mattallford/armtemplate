@@ -32,7 +32,7 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
-            az group create --location AustraliaEast --resource-group rg-githubactions
+            az group create --location "Australia East" --resource-group rg-githubactions
       
       - name: Deploy VNET ARM Template
         uses: Azure/arm-deploy@v1
