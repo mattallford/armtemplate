@@ -31,7 +31,8 @@ jobs:
         uses: Azure/cli@1.0.4
         with:
           # Specify the script here
-          inlineScript: 'az group create --location AustraliaEast --resource-group rg-githubactions'
+          inlineScript: |
+            az group create --location AustraliaEast --resource-group rg-githubactions
       
       - name: Deploy VNET ARM Template
         uses: Azure/arm-deploy@v1
@@ -42,9 +43,8 @@ jobs:
           subscriptionId: 8c6ccaa9-9f43-4f74-a91e-12a9f922d72c
           resourceGroupName: rg-githubactions
           # Specify the path or URL to the Azure Resource Manager template.
-          template: ./templates/vnet.json
+          template: ./templates/virtualmachine.json
           parameters:
-            ./templates/vnet.parameters.json
-            VnetName=vnet-003
+            adminPassword="x2q82a6y5BdS@s"
           # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
           deploymentMode: incremental
