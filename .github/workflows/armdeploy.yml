@@ -42,6 +42,7 @@ jobs:
           subscriptionId: 8c6ccaa9-9f43-4f74-a91e-12a9f922d72c
           resourceGroupName: rg-githubactions
           # Specify the path or URL to the Azure Resource Manager template.
-          template: ./vnet.json
+          template: ./templates/vnet.json
+          parameters: ./templates/vnet.parameters.json
           # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
           deploymentMode: incremental
