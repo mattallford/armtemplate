@@ -13,7 +13,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "ubuntuVM1storage20210501",
+            "name": "[toLower('ubuntuVM1storage20210521')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
             "location": "[resourceGroup().location]",
@@ -166,7 +166,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', toLower('ubuntuVM1storage'))).primaryEndpoints.blob]"
+                        "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', toLower('ubuntuVM1storage20210521'))).primaryEndpoints.blob]"
                     }
                 }
             }
