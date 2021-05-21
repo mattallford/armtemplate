@@ -25,3 +25,9 @@ jobs:
         with:
           # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Create Resource Group
+        uses: Azure/cli@1.0.4
+        with:
+          # Specify the script here
+          inlineScript: 'az group create --location AustraliaEast --resource-group rg-githubactions'
