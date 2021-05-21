@@ -33,7 +33,7 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
-            az group create --location "Australia East" --resource-group rg-githubactions
+            az group create --location "Australia East" --resource-group rg-githubactionsvm
       
       - name: Deploy VNET ARM Template
         uses: Azure/arm-deploy@v1
@@ -42,7 +42,7 @@ jobs:
           scope: resourcegroup
           # Override the Subscription Id set by Azure Login.
           subscriptionId: 8c6ccaa9-9f43-4f74-a91e-12a9f922d72c
-          resourceGroupName: rg-githubactions
+          resourceGroupName: rg-githubactionsvm
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./templates/virtualmachine.json
           parameters:
