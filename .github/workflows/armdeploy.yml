@@ -4,8 +4,9 @@ name: armTemplateDeployment
 
 # Controls when the action will run. 
 on:
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,3 +32,18 @@ jobs:
         with:
           # Specify the script here
           inlineScript: 'az group create --location AustraliaEast --resource-group rg-githubactions'
+      
+      - name: Deploy VNET ARM Template
+        uses: Azure/arm-deploy@v1
+        with:
+          # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
+          scope: resourcegroup
+          # Override the Subscription Id set by Azure Login.
+          subscriptionId: 8c6ccaa9-9f43-4f74-a91e-12a9f922d72c
+          resourceGroupName: rg-githubactions
+          # Specify the path or URL to the Azure Resource Manager template.
+          template: ./vnet.json
+          # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
+          deploymentMode: incremental
+          # Specifies the name of the resource group deployment to create.
+          deploymentName: VNET Deployment from GitHub Actions
