@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetName": {
+           "type": "string",
+           "metadata": {
+                "description": "Enter a name for the virtual network"
+            },
+            "defaultValue": "vnet-001"
+        },
+        "owner": {
+           "type": "string",
+           "metadata": {
+                "description": "Enter the value of the owner for this virtual network"
+            },
+            "defaultValue": "Matt"
+        },
+        "environment": {
+           "type": "string",
+           "metadata": {
+                "description": "Enter the environment to tag this VNET as"
+            },
+            "defaultValue": "development"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('vnetName')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2019-11-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "Owner": "[parameters('owner')]",
+                "Environment": "[parameters('environment')]"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "Subnet-1",
+                        "properties": {
+                            "addressPrefix": "10.0.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "Subnet-2",
+                        "properties": {
+                            "addressPrefix": "10.0.1.0/24"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {}
+}

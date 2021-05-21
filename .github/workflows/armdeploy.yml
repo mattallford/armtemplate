@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  resource_group_name: rg-githubactionsvm
+  location: "Australia East"
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -33,7 +37,7 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
-            az group create --location "Australia East" --resource-group rg-githubactionsvm
+            az group create --location ${{ env.location }} --resource-group ${{ env.resource_group_name }}
       
       - name: Deploy VNET ARM Template
         uses: Azure/arm-deploy@v1
@@ -42,10 +46,11 @@ jobs:
           scope: resourcegroup
           # Override the Subscription Id set by Azure Login.
           subscriptionId: 8c6ccaa9-9f43-4f74-a91e-12a9f922d72c
-          resourceGroupName: rg-githubactionsvm
+          resourceGroupName: ${{ env.resource_group_name }}
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./templates/virtualmachine.json
           parameters:
             adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
+            location=${{ env.location }}
           # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
           deploymentMode: incremental
