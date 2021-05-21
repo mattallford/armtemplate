@@ -45,5 +45,3 @@ jobs:
           template: ./vnet.json
           # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
           deploymentMode: incremental
-          # Specifies the name of the resource group deployment to create.
-          deploymentName: VNET Deployment from GitHub Actions
