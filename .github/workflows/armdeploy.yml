@@ -45,6 +45,6 @@ jobs:
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./templates/virtualmachine.json
           parameters:
-            adminPassword="x2q82a6y5BdS@s"
+            adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
           # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
           deploymentMode: incremental
