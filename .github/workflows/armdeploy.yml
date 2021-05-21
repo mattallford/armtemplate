@@ -37,7 +37,7 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
-            az group create --location ${{ env.location }} --resource-group ${{ env.resource_group_name }}
+            az group create --location "${{ env.location }}" --resource-group ${{ env.resource_group_name }}
       
       - name: Deploy VNET ARM Template
         uses: Azure/arm-deploy@v1
@@ -51,6 +51,6 @@ jobs:
           template: ./templates/virtualmachine.json
           parameters:
             adminPassword=${{ secrets.UBUNTU_ADMIN_PASSWORD }}
-            location=${{ env.location }}
+            location="${{ env.location }}"
           # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
           deploymentMode: incremental
