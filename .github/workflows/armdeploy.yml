@@ -9,10 +9,6 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  resource_group_name: rg-githubactionsvm
-  location: Australia East
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -20,7 +16,9 @@ jobs:
     name: Deploy to Staging
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    env:
+      resource_group_name: rg-githubactionsvm
+      location: Australia East
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
