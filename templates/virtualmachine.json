@@ -43,10 +43,7 @@
                 "displayName": "PublicIPAddress"
             },
             "properties": {
-                "publicIPAllocationMethod": "Dynamic",
-                "dnsSettings": {
-                    "domainNameLabel": "[toLower('ubuntuVM1')]"
-                }
+                "publicIPAllocationMethod": "Dynamic"
             }
         },
         {
