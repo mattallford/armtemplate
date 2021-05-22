@@ -18,7 +18,7 @@
     },
     "functions": [],
     "variables": {
-        "storageAccountName": "[concat('stgaccountmatt', uniqueString(resourceGroup().id) )]"
+        "storageAccountName": "[concat('stg', uniqueString(resourceGroup().id))]"
     },
     "resources": [
         {
