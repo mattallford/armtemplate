@@ -17,10 +17,12 @@
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "storageAccountName": "[concat('stgaccountmatt', uniqueString(resourceGroup().id) )]"
+    },
     "resources": [
         {
-            "name": "[toLower('ubuntuVM1storage20210521')]",
+            "name": "[variables('storageAccountName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
             "location": "[parameters('location')]",
@@ -173,7 +175,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', toLower('ubuntuVM1storage20210521'))).primaryEndpoints.blob]"
+                        "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.blob]"
                     }
                 }
             }
